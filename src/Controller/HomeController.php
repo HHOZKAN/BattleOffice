@@ -23,4 +23,14 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
+
+
+    #[Route('/emails', name: 'app_emails')]
+    public function emails(): Response
+    {
+        return $this->render('emails/confirmation.html.twig', [
+            'controller_name' => 'EmailsController',
+        ]);
+    }
 }
+
