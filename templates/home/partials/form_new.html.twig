@@ -10,14 +10,14 @@
 </style>
 
 {# Etape 2 #}
-{{ form_start(formOrder) }}
+{{ form_start(form) }}
     <div class="card step_2">
         <div class="card-content">
             <span class="card-title color_product_primary center-align">Étape 2</span>
             <p class="h6 center-align">Remplissez ce formulaire</p>
             <div class="form-wrapper">
                 <div class="input-field">
-                    {{ form_row(order.client.prenom) }}
+                    {{ form_row(order.client.firstname) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
