@@ -13,8 +13,8 @@ class CountryType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('addressBilling')
-            ->add('addressShipping')
+            ->add('addressBilling', AdressBillingType::class,)
+            ->add('addressShipping', AdressShippingType::class)
         ;
     }
 
