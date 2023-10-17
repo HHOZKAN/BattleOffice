@@ -21,7 +21,6 @@ class HomeController extends AbstractController
         // Crée une nouvelle instance d'Order
         $order = new Order();
 
-        $client = new Client();
 
         $country = new Country();
 
@@ -69,31 +68,5 @@ class HomeController extends AbstractController
         ]);
     }
 
-    public function orders(EntityManager $entityManager, Request $request): Response
-    {
-        // Crée une nouvelle instance d'Order
-        $order = new Order();
 
-        // Crée un formulaire basé sur OrderType
-        $formOrder = $this->createForm(OrderType::class, $order);
-
-        // Traite la soumission du formulaire
-        $formOrder->handleRequest($request);
-
-        if ($formOrder->isSubmitted() && $formOrder->isValid()) {
-            //    $paymentMethod = $order->getPaymentMethod();
-            $client = $order->getClient();
-            $addressBilling = $order->getAddressBilling();
-            $addressShipping = $order->getAddressShipping();
-
-            $entityManager->persist($order);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_home');
-        }
-        return $this->render('home/index.html.twig', [
-            'order' => $order,
-            'formOrder' => $formOrder
-        ]);
-    }
 }
