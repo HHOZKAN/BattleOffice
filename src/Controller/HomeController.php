@@ -16,29 +16,25 @@ class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
 
-    public function orders(Client $client, Country $country, EntityManagerInterface $entityManagerInterface, Request $request): Response
+    public function orders(Client $client, EntityManagerInterface $entityManagerInterface, Request $request): Response
     {
         // Crée une nouvelle instance d'Order
         $order = new Order();
-
-
-        $country = new Country();
-
         $order->setClient($client);
-        
-        
-
         // Crée un formulaire basé sur OrderType
         $form = $this->createForm(OrderType::class, $order);
 
         // Traite la soumission du formulaire
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()) {
+
+
             //    $paymentMethod = $order->getPaymentMethod();
             $addressBilling = $order->getAddressBilling();
-            
             $addressShipping = $order->getAddressShipping();
+
+            $entityManagerInterface->persist($client);
 
             $entityManagerInterface->persist($order);
             $entityManagerInterface->flush();
@@ -67,6 +63,4 @@ class HomeController extends AbstractController
             'controller_name' => 'EmailsController',
         ]);
     }
-
-
 }
