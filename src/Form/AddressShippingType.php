@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\AddressShipping;
+use App\Entity\Country;
+use Doctrine\ORM\Mapping\Entity;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
@@ -40,15 +43,12 @@ class AddressShippingType extends AbstractType
             ->add('phone', TelType::class, [
                 'label' => 'Numéro de téléphone'
             ])
-            ->add('country', ChoiceType::class, [
-                'choices' => [
-                    'choose an option' => null,
-                    'France' => 'France',
-                    'Belgique' => 'Belgique',
-                    'Suisse' => 'Suisse'
-                ],
+            ->add('country', EntityType::class, [
+                'class' => Country::class, // Indiquez l'entité de pays
+                'choice_label' => 'name', // Le champ de l'entité à afficher dans le formulaire
                 'label' => 'Pays'
-            ])
+            ]);
+           
         
         ;
     }

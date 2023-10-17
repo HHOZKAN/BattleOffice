@@ -33,10 +33,10 @@ class AddressBillingType extends AbstractType
                 'label' => 'Numéro de téléphone'
             ])
             ->add('country', EntityType::class, [
-                'class' => Country::class,
-                'choice_label' => 'name',
+                'class' => Country::class, // Indiquez l'entité de pays
+                'choice_label' => 'name', // Le champ de l'entité à afficher dans le formulaire
                 'label' => 'Pays'
-            ])
+            ]);
             // ->add('orderAddressBilling')
         ;
     }

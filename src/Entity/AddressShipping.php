@@ -37,6 +37,9 @@ class AddressShipping
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $lastname = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $address_line2 = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -144,6 +147,18 @@ class AddressShipping
     public function setLastname(?string $lastname): static
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getAddressLine2(): ?string
+    {
+        return $this->address_line2;
+    }
+
+    public function setAddressLine2(?string $address_line2): static
+    {
+        $this->address_line2 = $address_line2;
 
         return $this;
     }
