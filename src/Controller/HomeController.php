@@ -15,12 +15,14 @@ class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
 
-    public function orders(Client $client, EntityManagerInterface $entityManagerInterface, Request $request): Response
+    public function orders(EntityManagerInterface $entityManagerInterface, Request $request): Response
     {
         // Crée une nouvelle instance d'Order
         $order = new Order();
 
-        $client = $order->getClient();
+        // Crée une nouvelle instance et l'associe à l'order
+        $client = new Client();
+        $order->setClient($client);
 
         // Crée un formulaire basé sur OrderType
         $form = $this->createForm(OrderType::class, $order);
@@ -41,7 +43,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'client' => $client,
             'order' => $order,
-            'form' => $form
+            'form' => $form->createView()
         ]);
     }
 

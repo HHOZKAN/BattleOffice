@@ -17,39 +17,39 @@
             <p class="h6 center-align">Remplissez ce formulaire</p>
             <div class="form-wrapper">
                 <div class="input-field">
-                    {{ form_row(order.client.firstname) }}
+                    {{ form_row(form.client.firstname) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    {{ form_row(order.client.nom) }}
+                    {{ form_row(form.client.lastname) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    {{ form_row(order.addressBilling.adresse) }}
+                    {{ form_row(form.addressBilling.adresse) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    {{ form_row(order.addressBilling.complAdresse) }}
+                    {{ form_row(form.addressBilling.complAdresse) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    {{ form_row(order.addressBilling.Ville) }}
+                    {{ form_row(form.addressBilling.ville) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    {{ form_row(order.addressBilling.codePostal) }}
+                    {{ form_row(form.addressBilling.codePostal) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    {{ form_row(order.addressBilling.pays) }}
+                    {{ form_row(form.addressBilling.pays) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    {{ form_row(order.addressBilling.telephone) }}
+                    {{ form_row(form.addressBilling.telephone) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    {{ form_row(order.client.email) }}
+                    {{ form_row(form.client.email) }}
                     <div class="form-error"></div>
                 </div>
             </div>
@@ -59,35 +59,35 @@
                 <div class="collapsible-header"><i class="material-icons">markunread_mailbox</i>Adresse de livraison différente ?</div>
                 <div class="collapsible-body">
                     <div class="input-field">
-                        {{ form_row(order.client.prenom) }}
+                        {{ form_row(form.client.firstname) }}
                         <div class="form-error"></div>
                     </div>
                     <div class="input-field">
-                        {{ form_row(order.client.nom) }}
+                        {# {{ form_row(form.client.nom) }} #}
                         <div class="form-error"></div>
                     </div>
                     <div class="input-field">
-                        {{ form_row(order.addressShipping.adresse) }}
+                        {# {{ form_row(form.addressShipping.adresse) }} #}
                         <div class="form-error"></div>
                     </div>
                     <div class="input-field">
-                        {{ form_row(order.addressShipping.complAdresse) }}
+                        {# {{ form_row(order.addressShipping.complAdresse) }} #}
                         <div class="form-error"></div>
                     </div>
                     <div class="input-field">
-                        {{ form_row(order.addressShipping.ville) }}
+                        {# {{ form_row(order.addressShipping.ville) }} #}
                         <div class="form-error"></div>
                     </div>
                     <div class="input-field">
-                        {{ form_row(order.addressShipping.codePostal) }}
+                        {# {{ form_row(order.addressShipping.codePostal) }} #}
                         <div class="form-error"></div>
                     </div>
                     <div class="input-field">
-                        {{ form_row(order.addressShipping.pays) }}
+                        {# {{ form_row(order.addressShipping.pays) }} #}
                         <div class="form-error"></div>
                     </div>
                     <div class="input-field">
-                        {{ form_row(order.addressShipping.telephone) }}
+                        {# {{ form_row(order.addressShipping.telephone) }} #}
                         <div class="form-error"></div>
                     </div>
                 </div>
@@ -126,4 +126,4 @@
             </ul>
         </div>
     </div>
-{{ form_end }}
+{{ form_end(form) }}
