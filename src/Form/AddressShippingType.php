@@ -15,22 +15,32 @@ class AddressShippingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('adresse', TextType::class, [
+
+        ->add('firstname', TextType::class, [
+            'label' => 'Prénom'
+
+        ])
+
+        ->add('lastname', TextType::class, [
+            'label' => 'Nom'
+
+        ])
+            ->add('address_line1', TextType::class, [
                 'label' => 'Adresse'
             ])
-            ->add('complAdresse', TextType::class, [
+            ->add('address_line2', TextType::class, [
                 'label' => 'Complément d\'adresse'
             ])
-            ->add('ville', TextType::class, [
+            ->add('city', TextType::class, [
                 'label' => 'Ville'
             ])
-            ->add('codePostal', TextType::class, [
+            ->add('zipcode', TextType::class, [
                 'label' => 'Code postal'
             ])
-            ->add('telephone', TelType::class, [
+            ->add('phone', TelType::class, [
                 'label' => 'Numéro de téléphone'
             ])
-            ->add('pays', ChoiceType::class, [
+            ->add('country', ChoiceType::class, [
                 'choices' => [
                     'choose an option' => null,
                     'France' => 'France',
@@ -39,7 +49,7 @@ class AddressShippingType extends AbstractType
                 ],
                 'label' => 'Pays'
             ])
-            // ->add('orderAddressShipping')
+        
         ;
     }
 
