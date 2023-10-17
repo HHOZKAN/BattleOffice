@@ -16,7 +16,6 @@ class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
 
-    public function orders(EntityManagerInterface $entityManagerInterface, Request $request): Response
     public function orders(Client $client, Country $country, EntityManagerInterface $entityManagerInterface, Request $request): Response
     {
         // Crée une nouvelle instance d'Order
