@@ -25,27 +25,27 @@
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    {{ form_row(form.addressBilling.adresse) }}
+                    {{ form_row(form.addressBilling.address_line1) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    {{ form_row(form.addressBilling.complAdresse) }}
+                    {{ form_row(form.addressBilling.address_line2) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    {{ form_row(form.addressBilling.ville) }}
+                    {{ form_row(form.addressBilling.city) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    {{ form_row(form.addressBilling.codePostal) }}
+                    {{ form_row(form.addressBilling.zipcode) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    {{ form_row(form.addressBilling.pays) }}
+                    {{ form_row(form.addressBilling.country) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
-                    {{ form_row(form.addressBilling.telephone) }}
+                    {{ form_row(form.addressBilling.phone) }}
                     <div class="form-error"></div>
                 </div>
                 <div class="input-field">
@@ -59,7 +59,7 @@
                 <div class="collapsible-header"><i class="material-icons">markunread_mailbox</i>Adresse de livraison différente ?</div>
                 <div class="collapsible-body">
                     <div class="input-field">
-                        {{ form_row(form.client.firstname) }}
+                        {# {{ form_row(form.client.firstname) }} #}
                         <div class="form-error"></div>
                     </div>
                     <div class="input-field">
