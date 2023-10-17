@@ -19,33 +19,42 @@ class AddressShippingType extends AbstractType
         $builder
 
         ->add('firstname', TextType::class, [
-            'label' => 'Prénom'
+            'label' => 'Prénom',
+            'required' => false
 
         ])
 
         ->add('lastname', TextType::class, [
-            'label' => 'Nom'
+            'label' => 'Nom',
+            'required' => false
 
         ])
             ->add('address_line1', TextType::class, [
-                'label' => 'Adresse'
+                'label' => 'Adresse',
+                'required' => false
             ])
             ->add('address_line2', TextType::class, [
-                'label' => 'Complément d\'adresse'
+                'label' => 'Complément d\'adresse',
+                'required' => false
+
             ])
             ->add('city', TextType::class, [
-                'label' => 'Ville'
+                'label' => 'Ville',
+                'required' => false
             ])
-            ->add('zipcode', IntegerType::class, [
-                'label' => 'Code postal'
+            ->add('zipcode', TextType::class, [
+                'label' => 'Code postal',
+                'required' => false
             ])
             ->add('phone', TelType::class, [
-                'label' => 'Numéro de téléphone'
+                'label' => 'Numéro de téléphone',
+                'required' => false
             ])
             ->add('country', EntityType::class, [
-                'class' => Country::class,
-                'choice_label' => 'name',
-                'label' => 'Pays'
+                'class' => Country::class, // Indiquez l'entité de pays
+                'choice_label' => 'name', // Le champ de l'entité à afficher dans le formulaire
+                'label' => 'Pays',
+                'required' => false
             ]);
         
         ;

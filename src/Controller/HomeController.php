@@ -20,13 +20,7 @@ class HomeController extends AbstractController
     {
         // Crée une nouvelle instance d'Order
         $order = new Order();
-
-        $country = new Country();
-
         $order->setClient($client);
-        
-        
-
         // Crée un formulaire basé sur OrderType
         $form = $this->createForm(OrderType::class, $order);
 
@@ -34,11 +28,16 @@ class HomeController extends AbstractController
         $form->handleRequest($request);
         // dd($order);
 
-        if ($form->isSubmitted() ) {
+        if ($form->isSubmitted()) {
+
+
             //    $paymentMethod = $order->getPaymentMethod();
             $addressBilling = $order->getAddressBilling();
-            
             $addressShipping = $order->getAddressShipping();
+
+            $entityManagerInterface->persist($client);
+
+            $entityManagerInterface->persist($client);
 
             $entityManagerInterface->persist($client);
             $entityManagerInterface->persist($order);
@@ -69,6 +68,4 @@ class HomeController extends AbstractController
             'controller_name' => 'EmailsController',
         ]);
     }
-
-
 }
