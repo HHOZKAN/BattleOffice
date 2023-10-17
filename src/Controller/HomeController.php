@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Client;
+use App\Entity\Country;
 use App\Entity\Order;
 use App\Form\OrderType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,14 +16,18 @@ class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
 
-    public function orders(Client $client, EntityManagerInterface $entityManagerInterface, Request $request): Response
+    public function orders(Client $client, Country $country, EntityManagerInterface $entityManagerInterface, Request $request): Response
     {
         // Crée une nouvelle instance d'Order
         $order = new Order();
 
         $client = new Client();
 
+        $country = new Country();
+
         $order->setClient($client);
+        
+        
 
         // Crée un formulaire basé sur OrderType
         $form = $this->createForm(OrderType::class, $order);
@@ -33,6 +38,7 @@ class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             //    $paymentMethod = $order->getPaymentMethod();
             $addressBilling = $order->getAddressBilling();
+            
             $addressShipping = $order->getAddressShipping();
 
             $entityManagerInterface->persist($order);
