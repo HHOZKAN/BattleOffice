@@ -16,7 +16,7 @@ class ClientType extends AbstractType
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom'
             ])
-            ->add('nom', TextType::class, [
+            ->add('lastname', TextType::class, [
                 'label' => 'Nom'
             ])
             ->add('email', TextType::class, [

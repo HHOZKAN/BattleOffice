@@ -31,6 +31,12 @@ class AddressShipping
     #[ORM\OneToOne(mappedBy: 'addressshipping', cascade: ['persist', 'remove'])]
     private ?Order $orderAddressShipping = null;
 
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $firstname = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $lastname = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -114,6 +120,30 @@ class AddressShipping
         }
 
         $this->orderAddressShipping = $orderAddressShipping;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(?string $firstname): static
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(?string $lastname): static
+    {
+        $this->lastname = $lastname;
 
         return $this;
     }

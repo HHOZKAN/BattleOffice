@@ -20,7 +20,9 @@ class HomeController extends AbstractController
         // Crée une nouvelle instance d'Order
         $order = new Order();
 
-        $client = $order->getClient();
+        $client = new Client();
+
+        $order->setClient($client);
 
         // Crée un formulaire basé sur OrderType
         $form = $this->createForm(OrderType::class, $order);
@@ -39,7 +41,6 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
         return $this->render('home/index.html.twig', [
-            'client' => $client,
             'order' => $order,
             'form' => $form
         ]);
