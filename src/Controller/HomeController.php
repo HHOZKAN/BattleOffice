@@ -36,10 +36,6 @@ class HomeController extends AbstractController
             $addressShipping = $order->getAddressShipping();
 
             $entityManagerInterface->persist($client);
-
-            $entityManagerInterface->persist($client);
-
-            $entityManagerInterface->persist($client);
             $entityManagerInterface->persist($order);
             $entityManagerInterface->flush();
             // dd($entityManagerInterface);
