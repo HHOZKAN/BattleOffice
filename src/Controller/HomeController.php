@@ -16,11 +16,10 @@ class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
 
-    public function orders(Client $client, Country $country, EntityManagerInterface $entityManagerInterface, Request $request): Response
+    public function orders(Client $client, EntityManagerInterface $entityManagerInterface, Request $request): Response
     {
         // Crée une nouvelle instance d'Order
         $order = new Order();
-
 
         $country = new Country();
 
@@ -33,15 +32,18 @@ class HomeController extends AbstractController
 
         // Traite la soumission du formulaire
         $form->handleRequest($request);
+        // dd($order);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() ) {
             //    $paymentMethod = $order->getPaymentMethod();
             $addressBilling = $order->getAddressBilling();
             
             $addressShipping = $order->getAddressShipping();
 
+            $entityManagerInterface->persist($client);
             $entityManagerInterface->persist($order);
             $entityManagerInterface->flush();
+            // dd($entityManagerInterface);
 
             return $this->redirectToRoute('app_home');
         }
