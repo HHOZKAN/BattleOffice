@@ -25,14 +25,15 @@ class AddressBilling
     #[ORM\Column(nullable: true)]
     private ?int $zipcode = null;
 
-    #[ORM\OneToOne(inversedBy: 'addressBilling', cascade: ['persist', 'remove'])]
-    private ?Country $country = null;
-
     #[ORM\Column(nullable: true)]
     private ?int $phone = null;
 
     #[ORM\OneToOne(mappedBy: 'addressBilling', cascade: ['persist', 'remove'])]
     private ?Order $orderAddressBilling = null;
+
+    #[ORM\ManyToOne(inversedBy: 'addressBilling')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Country $country = null;
 
     public function getId(): ?int
     {
@@ -87,18 +88,6 @@ class AddressBilling
         return $this;
     }
 
-    public function getCountry(): ?Country
-    {
-        return $this->country;
-    }
-
-    public function setCountry(?Country $country): static
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
     public function getPhone(): ?int
     {
         return $this->phone;
@@ -129,6 +118,18 @@ class AddressBilling
         }
 
         $this->orderAddressBilling = $orderAddressBilling;
+
+        return $this;
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?Country $country): static
+    {
+        $this->country = $country;
 
         return $this;
     }

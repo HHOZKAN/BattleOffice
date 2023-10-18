@@ -18,11 +18,17 @@ class Country
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $name = null;
 
-    #[ORM\OneToOne(mappedBy: 'country', cascade: ['persist', 'remove'])]
-    private ?AddressBilling $addressBilling = null;
+    #[ORM\OneToMany(mappedBy: 'country', targetEntity: AddressBilling::class)]
+    private Collection $addressBilling;
 
-    #[ORM\OneToOne(mappedBy: 'country', cascade: ['persist', 'remove'])]
-    private ?AddressShipping $addressShipping = null;
+    #[ORM\OneToMany(mappedBy: 'country', targetEntity: AddressShipping::class)]
+    private Collection $addressShipping;
+
+    public function __construct()
+    {
+        $this->addressBilling = new ArrayCollection();
+        $this->addressShipping = new ArrayCollection();
+    }
 
 
 
@@ -43,46 +49,62 @@ class Country
         return $this;
     }
 
-    public function getAddressBilling(): ?AddressBilling
+    /**
+     * @return Collection<int, AddressBilling>
+     */
+    public function getAddressBilling(): Collection
     {
         return $this->addressBilling;
     }
 
-    public function setAddressBilling(?AddressBilling $addressBilling): static
+    public function addAddressBilling(AddressBilling $addressBilling): static
     {
-        // unset the owning side of the relation if necessary
-        if ($addressBilling === null && $this->addressBilling !== null) {
-            $this->addressBilling->setCountry(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($addressBilling !== null && $addressBilling->getCountry() !== $this) {
+        if (!$this->addressBilling->contains($addressBilling)) {
+            $this->addressBilling->add($addressBilling);
             $addressBilling->setCountry($this);
         }
-
-        $this->addressBilling = $addressBilling;
 
         return $this;
     }
 
-    public function getAddressShipping(): ?AddressShipping
+    public function removeAddressBilling(AddressBilling $addressBilling): static
+    {
+        if ($this->addressBilling->removeElement($addressBilling)) {
+            // set the owning side to null (unless already changed)
+            if ($addressBilling->getCountry() === $this) {
+                $addressBilling->setCountry(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, AddressShipping>
+     */
+    public function getAddressShipping(): Collection
     {
         return $this->addressShipping;
     }
 
-    public function setAddressShipping(?AddressShipping $addressShipping): static
+    public function addAddressShipping(AddressShipping $addressShipping): static
     {
-        // unset the owning side of the relation if necessary
-        if ($addressShipping === null && $this->addressShipping !== null) {
-            $this->addressShipping->setCountry(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($addressShipping !== null && $addressShipping->getCountry() !== $this) {
+        if (!$this->addressShipping->contains($addressShipping)) {
+            $this->addressShipping->add($addressShipping);
             $addressShipping->setCountry($this);
         }
 
-        $this->addressShipping = $addressShipping;
+        return $this;
+    }
+
+    public function removeAddressShipping(AddressShipping $addressShipping): static
+    {
+        if ($this->addressShipping->removeElement($addressShipping)) {
+            // set the owning side to null (unless already changed)
+            if ($addressShipping->getCountry() === $this) {
+                $addressShipping->setCountry(null);
+            }
+        }
 
         return $this;
     }

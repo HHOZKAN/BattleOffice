@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20231017092730 extends AbstractMigration
+final class Version20231018073239 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,8 +20,8 @@ final class Version20231017092730 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE address_billing (id INT AUTO_INCREMENT NOT NULL, country_id INT DEFAULT NULL, address_line1 VARCHAR(255) DEFAULT NULL, address_line2 VARCHAR(255) DEFAULT NULL, city VARCHAR(100) DEFAULT NULL, zipcode INT DEFAULT NULL, phone INT DEFAULT NULL, UNIQUE INDEX UNIQ_B7C7BB32F92F3E70 (country_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE address_shipping (id INT AUTO_INCREMENT NOT NULL, country_id INT DEFAULT NULL, address_line1 VARCHAR(255) DEFAULT NULL, city VARCHAR(100) DEFAULT NULL, zipcode INT DEFAULT NULL, phone INT DEFAULT NULL, firstname VARCHAR(50) DEFAULT NULL, lastname VARCHAR(50) DEFAULT NULL, address_line2 VARCHAR(255) DEFAULT NULL, UNIQUE INDEX UNIQ_D393E9A5F92F3E70 (country_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE address_billing (id INT AUTO_INCREMENT NOT NULL, country_id INT NOT NULL, address_line1 VARCHAR(255) DEFAULT NULL, address_line2 VARCHAR(255) DEFAULT NULL, city VARCHAR(100) DEFAULT NULL, zipcode INT DEFAULT NULL, phone INT DEFAULT NULL, INDEX IDX_B7C7BB32F92F3E70 (country_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE address_shipping (id INT AUTO_INCREMENT NOT NULL, country_id INT DEFAULT NULL, address_line1 VARCHAR(255) DEFAULT NULL, city VARCHAR(100) DEFAULT NULL, zipcode INT DEFAULT NULL, phone INT DEFAULT NULL, firstname VARCHAR(50) DEFAULT NULL, lastname VARCHAR(50) DEFAULT NULL, address_line2 VARCHAR(255) DEFAULT NULL, INDEX IDX_D393E9A5F92F3E70 (country_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE client (id INT AUTO_INCREMENT NOT NULL, firstname VARCHAR(50) DEFAULT NULL, lastname VARCHAR(50) DEFAULT NULL, email VARCHAR(100) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE country (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(50) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE `order` (id INT AUTO_INCREMENT NOT NULL, payment_method_id INT DEFAULT NULL, client_id INT DEFAULT NULL, address_billing_id INT DEFAULT NULL, addressshipping_id INT DEFAULT NULL, status VARCHAR(50) DEFAULT NULL, UNIQUE INDEX UNIQ_F52993985AA1164F (payment_method_id), INDEX IDX_F529939819EB6921 (client_id), UNIQUE INDEX UNIQ_F5299398439FD419 (address_billing_id), UNIQUE INDEX UNIQ_F529939853518B1E (addressshipping_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');

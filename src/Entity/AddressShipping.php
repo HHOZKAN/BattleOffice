@@ -22,9 +22,6 @@ class AddressShipping
     #[ORM\Column(nullable: true)]
     private ?int $zipcode = null;
 
-    #[ORM\OneToOne(inversedBy: 'addressShipping', cascade: ['persist', 'remove'])]
-    private ?Country $country = null;
-
     #[ORM\Column(nullable: true)]
     private ?int $phone = null;
 
@@ -39,6 +36,9 @@ class AddressShipping
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $address_line2 = null;
+
+    #[ORM\ManyToOne(inversedBy: 'addressShipping')]
+    private ?Country $country = null;
 
     public function getId(): ?int
     {
@@ -77,18 +77,6 @@ class AddressShipping
     public function setZipcode(?int $zipcode): static
     {
         $this->zipcode = $zipcode;
-
-        return $this;
-    }
-
-    public function getCountry(): ?Country
-    {
-        return $this->country;
-    }
-
-    public function setCountry(?Country $country): static
-    {
-        $this->country = $country;
 
         return $this;
     }
@@ -159,6 +147,18 @@ class AddressShipping
     public function setAddressLine2(?string $address_line2): static
     {
         $this->address_line2 = $address_line2;
+
+        return $this;
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?Country $country): static
+    {
+        $this->country = $country;
 
         return $this;
     }
