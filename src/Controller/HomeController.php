@@ -30,8 +30,7 @@ class HomeController extends AbstractController
 
         if ($form->isSubmitted()) {
 
-
-            //    $paymentMethod = $order->getPaymentMethod();
+            // $paymentMethod = $order->getPaymentMethod();
             $addressBilling = $order->getAddressBilling();
             $addressShipping = $order->getAddressShipping();
 
@@ -42,6 +41,7 @@ class HomeController extends AbstractController
 
             return $this->redirectToRoute('app_home');
         }
+
         return $this->render('home/index.html.twig', [
             'order' => $order,
             'form' => $form->createView()
@@ -55,7 +55,6 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
-
 
     #[Route('/emails', name: 'app_emails')]
     public function emails(): Response
